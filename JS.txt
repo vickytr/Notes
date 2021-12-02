@@ -1,0 +1,3 @@
+JavaScript Notes:-
+  1. Let
+    ->  
