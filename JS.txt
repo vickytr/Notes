@@ -1,3 +1,4 @@
 JavaScript Notes:-
-  1. Let
-    ->  
+  1. Variables:-
+    ->  Let:-
+       
