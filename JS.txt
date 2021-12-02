@@ -1,4 +1,19 @@
 JavaScript Notes:-
   1. Variables:-
-    ->  Let:-
+    Variables are used to store the informatioms.
+    the variable must contains only letters, digit, or the symbols $ and _.
+    the first character must not be digit.
+    case matters - variable name apple and Apple are two different variables.
+    reserved names - reserved names can't be used as variable names because they are used by the language itself. ex:- let, class, return, function.
+    an assignment without use strict- normally we need to define a variable before using it. but in the old times, it was technically possible to create a variable by a mere assignment of the value without using let. This still works now if we don’t put use strict in our scripts to maintain compatibility with old scripts. 
+    3 types variable declartion is there
+      1. let
+      2. var
+      3. constants
+        to declare a constant (unchanging) variable, use const instead of let:
+        const myBirthday = '27.08.1980';
+        Variables declared using const are called “constants”. They cannot be reassigned. An attempt to do so would cause an error:
+
+
        
+        
