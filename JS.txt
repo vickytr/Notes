@@ -1,103 +1,103 @@
 JavaScript Notes:-
-  1. Variables:-
-    Variables are used to store the informatioms.
-    the variable must contains only letters, digit, or the symbols $ and _.
-    the first character must not be digit.
-    case matters - variable name apple and Apple are two different variables.
-    reserved names - reserved names can't be used as variable names because they are used by the language itself. ex:- let, class, return, function.
-    an assignment without use strict- normally we need to define a variable before using it. but in the old times, it was technically possible to create a variable by a mere assignment of the value without using let. This still works now if we don’t put use strict in our scripts to maintain compatibility with old scripts. 
-    3 types variable declartion is there
-      1. let
-      2. var
-      3. constants
-        to declare a constant (unchanging) variable, use const instead of let:
-        const myBirthday = '27.08.1980';
-        Variables declared using const are called “constants”. They cannot be reassigned. An attempt to do so would cause an error:
+	1. Variables:-
+		Variables are used to store the informatioms.
+		the variable must contains only letters, digit, or the symbols $ and _.
+		the first character must not be digit.
+		case matters - variable name apple and Apple are two different variables.
+		reserved names - reserved names can't be used as variable names because they are used by the language itself. ex:- let, class, return, function.
+		an assignment without use strict- normally we need to define a variable before using it. but in the old times, it was technically possible to create a variable by a mere assignment of the value without using let. This still works now if we don’t put use strict in our scripts to maintain compatibility with old scripts. 
+		3 types variable declartion is there
+		  1. let
+		  2. var
+		  3. constants
+			to declare a constant (unchanging) variable, use const instead of let:
+			const myBirthday = '27.08.1980';
+			Variables declared using const are called “constants”. They cannot be reassigned. An attempt to do so would cause an error:
 
+	2.	Data Type:-
+		There are 8 basic data types in JavaScript.
+		1.  number for numbers of any kind: integer or floating-point, integers are limited by ±(253-1).
+		2.  bigint is for integer numbers of arbitrary length.
+		3.  string for strings. A string may have zero or more characters, there’s no separate single-character type.
+		4.  boolean for true/false.
+		5.  null for unknown values – a standalone type that has a single value null.
+		6.  undefined for unassigned values – a standalone type that has a single value undefined.
+		7.  object for more complex data structures.
+		8.  symbol for unique identifiers.
+		The typeof operator allows us to see which type is stored in a variable.
+		  Two forms: typeof x or typeof(x).
+		  Returns a string with the name of the type, like "string".
+		  For null returns "object" – this is an error in the language, it’s not actually an object.
+		null:-
+		  In JavaScript, null is not a “reference to a non-existing object” or a “null pointer” like in some other languages.
+		  It’s just a special value which represents “nothing”, “empty” or “value unknown”.
 
-    There are 8 basic data types in JavaScript.
-    1.  number for numbers of any kind: integer or floating-point, integers are limited by ±(253-1).
-    2.  bigint is for integer numbers of arbitrary length.
-    3.  string for strings. A string may have zero or more characters, there’s no separate single-character type.
-    4.  boolean for true/false.
-    5.  null for unknown values – a standalone type that has a single value null.
-    6.  undefined for unassigned values – a standalone type that has a single value undefined.
-    7.  object for more complex data structures.
-    8.  symbol for unique identifiers.
-    The typeof operator allows us to see which type is stored in a variable.
-      Two forms: typeof x or typeof(x).
-      Returns a string with the name of the type, like "string".
-      For null returns "object" – this is an error in the language, it’s not actually an object.
-    null:-
-      In JavaScript, null is not a “reference to a non-existing object” or a “null pointer” like in some other languages.
-      It’s just a special value which represents “nothing”, “empty” or “value unknown”.
-    
-    undefined:-
-      The special value undefined also stands apart. It makes a type of its own, just like null.
-      The meaning of undefined is “value is not assigned”.
-      If a variable is declared, but not assigned, then its value is undefined:
-        let age;
-        alert(age); // shows "undefined"
-    Objects and Symbols:-
-      The object type is special.
-      All other types are called “primitive” because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities.
-    The typeof operator:-
-      The typeof operator returns the type of the argument. It’s useful when we want to process values of different types differently or just want to do a quick check.
-      It supports two forms of syntax:
-        As an operator: typeof x.
-        As a function: typeof(x).
-          typeof undefined // "undefined"
-          typeof 0 // "number"
-          typeof 10n // "bigint"
-          typeof true // "boolean"
-          typeof "foo" // "string"
-          typeof Symbol("id") // "symbol"
-          typeof Math // "object"  (1)
-          typeof null // "object"  (2)
-          typeof alert // "function"  (3)
-          1. Math is a built-in object that provides mathematical operations. Here, it serves just as an example of an object.
-          2. The result of typeof null is "object". That’s an officially recognized error in typeof behavior, coming from the early days of JavaScript and kept for compatibility. Definitely, null is not an object. It is a special value with a separate type of its own.
-          3. The result of typeof alert is "function", because alert is a function. 
-      ex:-
-      let name = "Ilya";
-      // the expression is a number 1
-      alert( `hello ${1}` ); // hello 1
-      // the expression is a string "name"
-      alert( `hello ${"name"}` ); // hello name
-      // the expression is a variable, embed it
-      alert( `hello ${name}` ); // hello Ilya
-  
-  3.  Interaction: alert, prompt, confirm:-
-    alert:-
-      It shows a message and waits for the user to press “OK”.
-        alert("Hello");
-        The mini-window with the message is called a modal window. The word “modal” means that the visitor can’t interact with the rest of the page, press other buttons, etc, until they have dealt with the window. In this case – until they press “OK”.
-    prompt:-
-      The function prompt accepts two arguments:
-      result = prompt(title, [default]);[default] is optional.
-      It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.
-      title:- The text to show the visitor.
-      default:- An optional second parameter, the initial value for the input field.
-      let test = prompt("Test", ''); // <-- for IE
-    confirm:-
-      result = confirm(question);
-      The function confirm shows a modal window with a question and two buttons: OK and Cancel.
-      The result is true if OK is pressed and false otherwise.
-        let isBoss = confirm("Are you the boss?");
-        alert( isBoss ); // true if OK is pressed
-        Summary:-
-          We covered 3 browser-specific functions to interact with visitors:
-          alert
-            shows a message.
-          prompt
-            shows a message asking the user to input text. It returns the text or, if Cancel button or Esc is clicked, null.
-          confirm
-            shows a message and waits for the user to press “OK” or “Cancel”. It returns true for OK and false for Cancel/Esc.
-          All these methods are modal: they pause script execution and don’t allow the visitor to interact with the rest of the page until the window has been dismissed.
-          There are two limitations shared by all the methods above:
-            1. The exact location of the modal window is determined by the browser. Usually, it’s in the center.
-            2. The exact look of the window also depends on the browser. We can’t modify it.
-  4.	Type Conversions:-
+		undefined:-
+		  The special value undefined also stands apart. It makes a type of its own, just like null.
+		  The meaning of undefined is “value is not assigned”.
+		  If a variable is declared, but not assigned, then its value is undefined:
+			let age;
+			alert(age); // shows "undefined"
+		Objects and Symbols:-
+		  The object type is special.
+		  All other types are called “primitive” because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities.
+		The typeof operator:-
+		  The typeof operator returns the type of the argument. It’s useful when we want to process values of different types differently or just want to do a quick check.
+		  It supports two forms of syntax:
+			As an operator: typeof x.
+			As a function: typeof(x).
+			  typeof undefined // "undefined"
+			  typeof 0 // "number"
+			  typeof 10n // "bigint"
+			  typeof true // "boolean"
+			  typeof "foo" // "string"
+			  typeof Symbol("id") // "symbol"
+			  typeof Math // "object"  (1)
+			  typeof null // "object"  (2)
+			  typeof alert // "function"  (3)
+			  1. Math is a built-in object that provides mathematical operations. Here, it serves just as an example of an object.
+			  2. The result of typeof null is "object". That’s an officially recognized error in typeof behavior, coming from the early days of JavaScript and kept for compatibility. Definitely, null is not an object. It is a special value with a separate type of its own.
+			  3. The result of typeof alert is "function", because alert is a function. 
+		  ex:-
+		  let name = "Ilya";
+		  // the expression is a number 1
+		  alert( `hello ${1}` ); // hello 1
+		  // the expression is a string "name"
+		  alert( `hello ${"name"}` ); // hello name
+		  // the expression is a variable, embed it
+		  alert( `hello ${name}` ); // hello Ilya
+
+	3.  Interaction: alert, prompt, confirm:-
+		alert:-
+		  It shows a message and waits for the user to press “OK”.
+			alert("Hello");
+			The mini-window with the message is called a modal window. The word “modal” means that the visitor can’t interact with the rest of the page, press other buttons, etc, until they have dealt with the window. In this case – until they press “OK”.
+		prompt:-
+		  The function prompt accepts two arguments:
+		  result = prompt(title, [default]);[default] is optional.
+		  It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.
+		  title:- The text to show the visitor.
+		  default:- An optional second parameter, the initial value for the input field.
+		  let test = prompt("Test", ''); // <-- for IE
+		confirm:-
+		  result = confirm(question);
+		  The function confirm shows a modal window with a question and two buttons: OK and Cancel.
+		  The result is true if OK is pressed and false otherwise.
+			let isBoss = confirm("Are you the boss?");
+			alert( isBoss ); // true if OK is pressed
+			Summary:-
+			  We covered 3 browser-specific functions to interact with visitors:
+			  alert
+				shows a message.
+			  prompt
+				shows a message asking the user to input text. It returns the text or, if Cancel button or Esc is clicked, null.
+			  confirm
+				shows a message and waits for the user to press “OK” or “Cancel”. It returns true for OK and false for Cancel/Esc.
+			  All these methods are modal: they pause script execution and don’t allow the visitor to interact with the rest of the page until the window has been dismissed.
+			  There are two limitations shared by all the methods above:
+				1. The exact location of the modal window is determined by the browser. Usually, it’s in the center.
+				2. The exact look of the window also depends on the browser. We can’t modify it.
+	4.	Type Conversions:-
 		The three most widely used type conversions are to string, to number, and to boolean.
 			String Conversion – Occurs when we output something. Can be performed with String(value). The conversion to string is usually obvious for primitive values.
 			Numeric Conversion - Occurs in math operations. Can be performed with Number(value).
