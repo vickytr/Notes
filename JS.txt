@@ -97,4 +97,225 @@ JavaScript Notes:-
           There are two limitations shared by all the methods above:
             1. The exact location of the modal window is determined by the browser. Usually, it’s in the center.
             2. The exact look of the window also depends on the browser. We can’t modify it.
-
+  4.	Type Conversions:-
+		The three most widely used type conversions are to string, to number, and to boolean.
+			String Conversion – Occurs when we output something. Can be performed with String(value). The conversion to string is usually obvious for primitive values.
+			Numeric Conversion - Occurs in math operations. Can be performed with Number(value).
+		String Conversion:-
+			-	String conversion happens when we need the string form of a value. For example, alert(value) does it to show the value. We can also call the String(value) function to convert a value to a string:
+			let value = true;
+			alert(typeof value); // boolean
+			value = String(value); // now value is a string "true"
+			alert(typeof value); // string
+			String conversion is mostly obvious. A false becomes "false", null becomes "null", etc.
+		Numeric Conversion:-
+			Numeric conversion happens in mathematical functions and expressions automatically. For example, when division / is applied to non-numbers:
+			alert( "6" / "2" ); // 3, strings are converted to numbers
+			We can use the Number(value) function to explicitly convert a value to a number:
+			let str = "123";
+			alert(typeof str); // string
+			let num = Number(str); // becomes a number 123
+			alert(typeof num); // number
+			If the string is not a valid number, the result of such a conversion is NaN. For instance:
+			let age = Number("an arbitrary string instead of a number");
+			alert(age); // NaN, conversion failed
+			Numeric conversion rules:
+				undefined becomes NaN
+				null becomes 0
+				true and false becomes 1 and 0
+				string becomes Whitespaces from the start and end are removed. If the remaining string is empty, the result is 0. Otherwise, the number is “read” from the string. An error gives NaN.
+				ex:-
+					alert( Number("   123   ") ); // 123
+					alert( Number("123z") );      // NaN (error reading a number at "z")
+					alert( Number(true) );        // 1
+					alert( Number(false) );       // 0
+					Please note that null and undefined behave differently here: null becomes zero while undefined becomes NaN.
+		Boolean Conversion:-
+			Boolean conversion is the simplest one.
+			It happens in logical operations
+			The conversion rule:
+				Values that are intuitively “empty”, like 0, an empty string, null, undefined, and NaN, become false.
+				Other values become true.,
+				alert( Boolean(1) ); // true
+				alert( Boolean(0) ); // false
+				alert( Boolean("hello") ); // true
+				alert( Boolean("") ); // false
+				Please note: the string with zero "0" is true Some languages (namely PHP) treat "0" as false. But in JavaScript, a non-empty string is always true.
+				alert( Boolean("0") ); // true
+				alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
+	5.	Basic operators, maths-
+			Terms: “unary”, “binary”, “operand”-
+				An operand – is what operators are applied to. For instance, in the multiplication of 5 * 2 there are two operands: the left operand is 5 and the right operand is 2. Sometimes, people call these “arguments” instead of “operands”.
+				An operator is unary if it has a single operand. For example, the unary negation - reverses the sign of a number:\
+				let x = 1;
+				x = -x;
+				alert( x ); // -1, unary negation was applied
+			Maths:-
+				The following math operations are supported:
+					Addition +,
+					Subtraction -,
+					Multiplication *,
+					Division /,
+					Remainder %,
+					Exponentiation **.
+					The first four are straightforward, while % and ** need a few words about them.
+					Remainder %	-
+						The remainder operator %, despite its appearance, is not related to percents. The result of a % b is the remainder of the integer division of a by b.
+						alert( 5 % 2 ); // 1, a remainder of 5 divided by 2
+						alert( 8 % 3 ); // 2, a remainder of 8 divided by 3
+					Exponentiation ** -
+						The exponentiation operator a ** b raises a to the power of b. In school maths, we write that as ab.
+						alert( 2 ** 2 ); // 2² = 4
+						alert( 2 ** 3 ); // 2³ = 8
+						alert( 2 ** 4 ); // 2⁴ = 16
+						alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root)
+						alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
+			String concatenation with binary +:-
+				Let’s meet features of JavaScript operators that are beyond school arithmetics. Usually, the plus operator + sums numbers. But, if the binary + is applied to strings, it merges (concatenates) them:
+				let s = "my" + "string";
+				alert(s); // mystring
+				Note that if any of the operands is a string, then the other one is converted to a string too.
+				alert( '1' + 2 ); // "12"
+				alert( 2 + '1' ); // "21"
+				See, it doesn’t matter whether the first operand is a string or the second one. Here’s a more complex example:
+				alert(2 + 2 + '1' ); // "41" and not "221"
+				Here, operators work one after another. The first + sums two numbers, so it returns 4, then the next + adds the string 1 to it, so it’s like 4 + '1' = '41'.
+				alert('1' + 2 + 2); // "122" and not "14"
+				Here, the first operand is a string, the compiler treats the other two operands as strings too. The 2 gets concatenated to '1', so it’s like '1' + 2 = "12" and "12" + 2 = "122".
+				The binary + is the only operator that supports strings in such a way. Other arithmetic operators work only with numbers and always convert their operands to numbers.
+				alert( 6 - '2' ); // 4, converts '2' to a number
+				alert( '6' / '2' ); // 3, converts both operands to numbers
+			Numeric conversion, unary +:-
+				The plus + exists in two forms: the binary form that we used above and the unary form. The unary plus or, in other words, the plus operator + applied to a single value, doesn’t do anything to numbers. But if the operand is not a number, the unary plus converts it into a number.
+				// No effect on numbers
+				let x = 1;
+				alert( +x ); // 1
+				let y = -2;
+				alert( +y ); // -2
+				// Converts non-numbers
+				alert( +true ); // 1
+				alert( +"" );   // 0
+				It actually does the same thing as Number(...), but is shorter.
+				let apples = "2";
+				let oranges = "3";
+				// both values converted to numbers before the binary plus
+				alert( +apples + +oranges ); // 5
+				// the longer variant
+				// alert( Number(apples) + Number(oranges) ); // 5
+			Operator precedence:-
+				17 - unary plus - +
+				17 - unary negation - -
+				16 - exponentiation - **
+				15 - multiplication - *
+				15 - division - /
+				13 - addition - +
+				13 - subtraction - -
+				3 - assignment - =
+				As we can see, the “unary plus” has a priority of 17 which is higher than the 13 of “addition” (binary plus). That’s why, in the expression "+apples + +oranges", unary pluses work before the addition.
+			Assignment:-
+				Let’s note that an assignment = is also an operator. It is listed in the precedence table with the very low priority of 3.
+				That’s why, when we assign a variable, like x = 2 * 2 + 1, the calculations are done first and then the = is evaluated, storing the result in x.
+					let x = 2 * 2 + 1;
+					alert( x ); // 5
+			Chaining assignments:-
+				Another interesting feature is the ability to chain assignments:
+				let a, b, c;
+				a = b = c = 2 + 2;
+				alert( a ); // 4
+				alert( b ); // 4
+				alert( c ); // 4
+			Modify-in-place:-
+				We often need to apply an operator to a variable and store the new result in that same variable.
+				let n = 2;
+				n = n + 5;
+				n = n * 2;
+				This notation can be shortened using the operators += and *=:
+				let n = 2;
+				n += 5; // now n = 7 (same as n = n + 5)
+				n *= 2; // now n = 14 (same as n = n * 2)
+				alert( n ); // 14
+			Increment/decrement:-
+				Increasing or decreasing a number by one is among the most common numerical operations.
+				Increment ++ increases a variable by 1:
+					let counter = 2;
+					counter++;        // works the same as counter = counter + 1, but is shorter
+					alert( counter ); // 3
+				Decrement -- decreases a variable by 1:
+					let counter = 2;
+					counter--;        // works the same as counter = counter - 1, but is shorter
+					alert( counter ); // 1
+				The operators ++ and -- can be placed either before or after a variable.
+					When the operator goes after the variable, it is in “postfix form”: counter++.
+					The “prefix form” is when the operator goes before the variable: ++counter.
+					let counter = 1;
+					let a = ++counter; // (*)
+					alert(a); // 2
+					
+					let counter = 1;
+					let a = counter++; // (*) changed ++counter to counter++
+					alert(a); // 1
+			Bitwise operators:-
+				Bitwise operators treat arguments as 32-bit integer numbers and work on the level of their binary representation.
+				These operators are not JavaScript-specific. They are supported in most programming languages.
+				The list of operators:
+					AND ( & )
+					OR ( | )
+					XOR ( ^ )
+					NOT ( ~ )
+					LEFT SHIFT ( << )
+					RIGHT SHIFT ( >> )
+					ZERO-FILL RIGHT SHIFT ( >>> )
+			Comma:-
+				The comma operator , is one of the rarest and most unusual operators. Sometimes, it’s used to write shorter code, so we need to know it in order to understand what’s going on.
+				The comma operator allows us to evaluate several expressions, dividing them with a comma ,. Each of them is evaluated but only the result of the last one is returned.
+				let a = (1 + 2, 3 + 4);
+				alert( a ); // 7 (the result of 3 + 4)
+				Here, the first expression 1 + 2 is evaluated and its result is thrown away. Then, 3 + 4 is evaluated and returned as the result.
+	6.	Comparisons:-
+				Greater/less than: a > b, a < b. Greater/less than: a > b, a < b. Equals: a == b, please note the double equality sign == means the equality test, while a single one a = b means an assignment. Not equals: In maths the notation is ≠, but in JavaScript it’s written as a != b.
+			Boolean is the result:-
+				All comparison operators return a boolean value:
+				true – means “yes”, “correct” or “the truth”.
+				false – means “no”, “wrong” or “not the truth”.
+				alert( 2 > 1 );  // true (correct)
+				alert( 2 == 1 ); // false (wrong)
+				alert( 2 != 1 ); // true (correct)
+				let result = 5 > 4; // assign the result of the comparison
+				alert( result ); // true
+			String comparison:-
+				To see whether a string is greater than another, JavaScript uses the so-called “dictionary” or “lexicographical” order. In other words, strings are compared letter-by-letter.
+				alert( 'Z' > 'A' ); // true
+				alert( 'Glow' > 'Glee' ); // true
+				alert( 'Bee' > 'Be' ); // true
+			Comparison of different types:-
+				When comparing values of different types, JavaScript converts the values to numbers.
+				alert( '2' > 1 ); // true, string '2' becomes a number 2
+				alert( '01' == 1 ); // true, string '01' becomes a number 1
+				For boolean values, true becomes 1 and false becomes 0.
+				alert( true == 1 ); // true
+				alert( false == 0 ); // true
+			Strict equality:-
+				A regular equality check == has a problem. It cannot differentiate 0 from false:
+				alert( 0 == false ); // true
+				The same thing happens with an empty string:
+				alert( '' == false ); // true
+				This happens because operands of different types are converted to numbers by the equality operator ==. An empty string, just like false, becomes a zero.
+				A strict equality operator === checks the equality without type conversion.
+				alert( 0 === false ); // false, because the types are different
+				There is also a “strict non-equality” operator !== analogous to !=.
+				The strict equality operator is a bit longer to write, but makes it obvious what’s going on and leaves less room for errors.
+			Comparison with null and undefined:-
+				There’s a non-intuitive behavior when null or undefined are compared to other values.
+				For a strict equality check ===
+				These values are different, because each of them is a different type.
+				alert( null === undefined ); // false
+				For a non-strict check ==
+				There’s a special rule. These two are a “sweet couple”: they equal each other (in the sense of ==), but not any other value.
+				alert( null == undefined ); // true
+				For maths and other comparisons < > <= >=
+				null/undefined are converted to numbers: null becomes 0, while undefined becomes NaN.
+				Now let’s see some funny things that happen when we apply these rules. And, what’s more important, how to not fall into a trap with them.
+				Strange result: null vs 0
+				alert( null > 0 );  // (1) false
+				alert( null == 0 ); // (2) false
+				alert( null >= 0 ); // (3) true
